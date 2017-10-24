@@ -1,5 +1,5 @@
 package com.istic.aoc;
 
 public interface Generator {
-    Integer getValue();
+    public Integer getValue();
 }
