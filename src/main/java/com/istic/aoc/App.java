@@ -1,13 +1,11 @@
 package com.istic.aoc;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Generator g = new ConcreteGenerator();
+        ObservatorGenerator display = new Display();
+        display.update(g);
     }
 }
