@@ -6,6 +6,9 @@ public class App
     {
         Generator g = new ConcreteGenerator();
         ObservatorGenerator display = new Display();
-        display.update(g);
+        g.attach(display);
+        g.generate();
+        g.notifyObservers();
+
     }
 }
