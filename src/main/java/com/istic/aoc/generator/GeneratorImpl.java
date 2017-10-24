@@ -1,9 +1,11 @@
-package com.istic.aoc;
+package com.istic.aoc.generator;
+
+import com.istic.aoc.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ConcreteGenerator implements Generator {
+public class GeneratorImpl implements Generator {
     private Integer value;
 
     private ArrayList<Observer> observers = new ArrayList<Observer>();

@@ -1,4 +1,6 @@
-package com.istic.aoc;
+package com.istic.aoc.observer;
+
+import com.istic.aoc.generator.Generator;
 
 public class Display implements ObservatorGenerator {
 
