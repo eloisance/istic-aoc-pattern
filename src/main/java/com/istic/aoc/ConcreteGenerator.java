@@ -25,6 +25,7 @@ public class ConcreteGenerator implements Generator {
     public void generate() {
         Random r = new Random();
         setValue(r.nextInt());
+        notifyObservers();
     }
 
     public Integer getValue() {

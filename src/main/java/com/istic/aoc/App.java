@@ -8,7 +8,5 @@ public class App
         ObservatorGenerator display = new Display();
         g.attach(display);
         g.generate();
-        g.notifyObservers();
-
     }
 }
