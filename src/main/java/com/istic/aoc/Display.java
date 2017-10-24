@@ -1,10 +1,8 @@
 package com.istic.aoc;
 
-import java.util.Observable;
-
 public class Display implements ObservatorGenerator {
 
-    public void update(Observable o, Object arg) {
-
+    public void update(Generator subject) {
+        System.out.println("value: " + subject.getValue());
     }
 }
