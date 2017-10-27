@@ -1,15 +1,20 @@
 package com.istic.aoc;
 
 import com.istic.aoc.generator.Generator;
-import com.istic.aoc.observer.ObservatorGenerator;
+import com.istic.aoc.observer.AsyncObserver;
+import com.istic.aoc.observer.Observer;
+import com.istic.aoc.observer.Subject;
 
+import java.util.ArrayList;
 import java.util.concurrent.*;
 
-public class Channel implements ObservatorGeneratorAsync, GeneratorAsync {
+public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator>, AsyncGenerator {
 
     private Generator generator;
-    private ObservatorGenerator display;
+    private Observer<AsyncGenerator> observer;
     private ScheduledExecutorService scheduledExecutorService;
+
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     public Channel() {
         scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
@@ -19,7 +24,7 @@ public class Channel implements ObservatorGeneratorAsync, GeneratorAsync {
     public Future<Void> update(Generator generator) {
         // appeler la version synchrone de update() dans un thread
         // scheduler + method invocation
-        Callable<Void> update = new Update(this.display, this);
+        Callable<Void> update = new Update(this.observer, this);
         return scheduledExecutorService.schedule(update, 1, TimeUnit.SECONDS);
     }
 
@@ -44,5 +49,19 @@ public class Channel implements ObservatorGeneratorAsync, GeneratorAsync {
 
     public void setDisplay(ObservatorGenerator display) {
         this.display = display;
+    }
+
+    public void attach(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void detach(Observer observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update(this);
+        }
     }
 }

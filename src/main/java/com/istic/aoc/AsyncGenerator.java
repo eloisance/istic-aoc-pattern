@@ -5,7 +5,7 @@ import java.util.concurrent.Future;
 /**
  * getValue
  */
-public interface GeneratorAsync {
+public interface AsyncGenerator {
 
     Future<Integer> getValue();
 }

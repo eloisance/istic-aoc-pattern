@@ -1,6 +1,8 @@
 package com.istic.aoc.generator;
 
-public interface Generator extends Subject {
+import com.istic.aoc.observer.Subject;
+
+public interface Generator extends Subject<Generator> {
     Integer getValue();
     void generate();
 }

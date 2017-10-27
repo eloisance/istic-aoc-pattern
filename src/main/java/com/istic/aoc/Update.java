@@ -1,21 +1,20 @@
 package com.istic.aoc;
 
-import com.istic.aoc.observer.ObservatorGenerator;
+import com.istic.aoc.observer.AsyncObserver;
 
+import java.util.Observer;
 import java.util.concurrent.Callable;
 
 public class Update implements Callable<Void> {
 
-    private ObservatorGenerator display;
-    private Channel channel;
+    private AsyncGenerator asyncGenerator;
 
-    public Update(ObservatorGenerator d, Channel c) {
-        this.display = d;
-        this.channel = c;
+    public Update(AsyncGenerator a) {
+        this.asyncGenerator = a;
     }
 
     public Void call() throws Exception {
-        this.display.update(channel);
+        this.observer.update(channel);
         return null;
     }
 

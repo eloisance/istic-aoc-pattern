@@ -7,23 +7,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GeneratorImpl implements Generator {
+
     private Integer value;
 
-    private ArrayList<Channel> observers = new ArrayList<Channel>();
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
 
-    public void attach(Channel channel) {
-        observers.add(channel);
-    }
-
-    public void detach(Channel channel) {
-        observers.remove(channel);
-    }
-
-    public void notifyObservers() {
-        for (Channel o : observers) {
-            o.update(this);
-        }
-    }
 
     public void generate() {
         Random r = new Random();
@@ -37,5 +25,17 @@ public class GeneratorImpl implements Generator {
 
     public void setValue(Integer value) {
         this.value = value;
+    }
+
+    public void attach(Observer<Generator> observer) {
+        this.observers.add(observer);
+    }
+
+    public void detach(Observer<Generator> observer) {
+        this.observers.remove(observer);
+    }
+
+    public void notifyObservers() {
+        this.observers.forEach(o -> o.update(this));
     }
 }
