@@ -20,14 +20,14 @@ public class Channel implements ObservatorGeneratorAsync, GeneratorAsync {
         // appeler la version synchrone de update() dans un thread
         // scheduler + method invocation
         Callable<Void> update = new Update(this.display, this);
-        return scheduledExecutorService.schedule(update, 5, TimeUnit.SECONDS);
+        return scheduledExecutorService.schedule(update, 1, TimeUnit.SECONDS);
     }
 
     public Future<Integer> getValue() {
         // appeler la version synchrone de getValue() dans un thread
         // scheduler + method invocation
         Callable<Integer> getValue = new GetValue(this.generator);
-        return scheduledExecutorService.schedule(getValue, 5, TimeUnit.SECONDS);
+        return scheduledExecutorService.schedule(getValue, 1, TimeUnit.SECONDS);
     }
 
     public Generator getGenerator() {

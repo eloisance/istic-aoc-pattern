@@ -22,7 +22,9 @@ public class App
         c2.setGenerator(g);
         c2.setDisplay(display2);
 
-        // g.attach(display);
+        g.attach(c1);
+        g.attach(c2);
+
         g.generate();
     }
 }

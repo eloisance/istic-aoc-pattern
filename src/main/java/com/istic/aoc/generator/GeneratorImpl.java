@@ -1,5 +1,6 @@
 package com.istic.aoc.generator;
 
+import com.istic.aoc.Channel;
 import com.istic.aoc.observer.Observer;
 
 import java.util.ArrayList;
@@ -8,18 +9,18 @@ import java.util.Random;
 public class GeneratorImpl implements Generator {
     private Integer value;
 
-    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private ArrayList<Channel> observers = new ArrayList<Channel>();
 
-    public void attach(Observer observer) {
-        observers.add(observer);
+    public void attach(Channel channel) {
+        observers.add(channel);
     }
 
-    public void detach(Observer observer) {
-        observers.remove(observer);
+    public void detach(Channel channel) {
+        observers.remove(channel);
     }
 
     public void notifyObservers() {
-        for (Observer o : observers) {
+        for (Channel o : observers) {
             o.update(this);
         }
     }
