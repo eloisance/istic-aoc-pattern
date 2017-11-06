@@ -28,14 +28,17 @@ public class GeneratorImpl implements Generator {
     }
 
     public void attach(Observer<Generator> observer) {
+
         this.observers.add(observer);
     }
 
     public void detach(Observer<Generator> observer) {
+
         this.observers.remove(observer);
     }
 
     public void notifyObservers() {
+
         this.observers.forEach(o -> o.update(this));
     }
 }

@@ -10,6 +10,7 @@ public class GetValue implements Callable<Integer> {
     private Generator generator;
 
     public GetValue(Generator generator) {
+
         this.generator = generator;
     }
 

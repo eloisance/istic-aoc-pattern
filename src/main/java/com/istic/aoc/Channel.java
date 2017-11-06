@@ -13,19 +13,24 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
     private Generator generator;
     private Observer<AsyncGenerator> observer;
     private ScheduledExecutorService scheduledExecutorService;
-
     private ArrayList<Observer> observers = new ArrayList<Observer>();
 
-    public Channel() {
+    Channel() {
+
         scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
+
     }
 
 
     public Future<Void> update(Generator generator) {
         // appeler la version synchrone de update() dans un thread
         // scheduler + method invocation
-        Callable<Void> update = new Update(this.observer, this);
+        this.generator = generator;
+        Callable<Void> update = new Update(this, this.observer);
         return scheduledExecutorService.schedule(update, 1, TimeUnit.SECONDS);
+//        () -> {
+//            observer.update(Channel.this);
+//            return null;}
     }
 
     public Future<Integer> getValue() {
@@ -33,22 +38,6 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
         // scheduler + method invocation
         Callable<Integer> getValue = new GetValue(this.generator);
         return scheduledExecutorService.schedule(getValue, 1, TimeUnit.SECONDS);
-    }
-
-    public Generator getGenerator() {
-        return generator;
-    }
-
-    public void setGenerator(Generator generator) {
-        this.generator = generator;
-    }
-
-    public ObservatorGenerator getDisplay() {
-        return display;
-    }
-
-    public void setDisplay(ObservatorGenerator display) {
-        this.display = display;
     }
 
     public void attach(Observer observer) {
@@ -63,5 +52,37 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
         for (Observer o : observers) {
             o.update(this);
         }
+    }
+
+    public Generator getGenerator() {
+        return generator;
+    }
+
+    public void setGenerator(Generator generator) {
+        this.generator = generator;
+    }
+
+    public Observer<AsyncGenerator> getObserver() {
+        return observer;
+    }
+
+    public void setObserver(Observer<AsyncGenerator> observer) {
+        this.observer = observer;
+    }
+
+    public ScheduledExecutorService getScheduledExecutorService() {
+        return scheduledExecutorService;
+    }
+
+    public void setScheduledExecutorService(ScheduledExecutorService scheduledExecutorService) {
+        this.scheduledExecutorService = scheduledExecutorService;
+    }
+
+    public ArrayList<Observer> getObservers() {
+        return observers;
+    }
+
+    public void setObservers(ArrayList<Observer> observers) {
+        this.observers = observers;
     }
 }
