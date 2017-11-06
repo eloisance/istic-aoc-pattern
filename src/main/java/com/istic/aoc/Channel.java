@@ -13,7 +13,7 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
     private Generator generator;
     private Observer<AsyncGenerator> observer;
     private ScheduledExecutorService scheduledExecutorService;
-    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    //private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     Channel() {
 
@@ -26,7 +26,7 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
         // appeler la version synchrone de update() dans un thread
         // scheduler + method invocation
         this.generator = generator;
-        Callable<Void> update = new Update(this, this.observer);
+        Callable<Void> update = new Update(this);
         return scheduledExecutorService.schedule(update, 1, TimeUnit.SECONDS);
 //        () -> {
 //            observer.update(Channel.this);
@@ -41,17 +41,15 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
     }
 
     public void attach(Observer observer) {
-        observers.add(observer);
+        setObserver(observer);
     }
 
     public void detach(Observer observer) {
-        observers.remove(observer);
+        setObserver(null);
     }
 
     public void notifyObservers() {
-        for (Observer o : observers) {
-            o.update(this);
-        }
+            observer.update(this);
     }
 
     public Generator getGenerator() {
@@ -78,11 +76,11 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
         this.scheduledExecutorService = scheduledExecutorService;
     }
 
-    public ArrayList<Observer> getObservers() {
-        return observers;
-    }
-
-    public void setObservers(ArrayList<Observer> observers) {
-        this.observers = observers;
-    }
+//    public ArrayList<Observer> getObservers() {
+//        return observers;
+//    }
+//
+//    public void setObservers(ArrayList<Observer> observers) {
+//        this.observers = observers;
+//    }
 }

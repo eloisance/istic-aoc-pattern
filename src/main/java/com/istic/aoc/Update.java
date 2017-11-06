@@ -1,24 +1,24 @@
 package com.istic.aoc;
 
 import com.istic.aoc.observer.AsyncObserver;
+import com.istic.aoc.observer.Subject;
 
 import java.util.Observer;
 import java.util.concurrent.Callable;
 
 public class Update implements Callable<Void> {
 
-    private AsyncGenerator asyncGenerator;
-    private com.istic.aoc.observer.Observer<AsyncGenerator> observer;
 
-    public Update(AsyncGenerator a, com.istic.aoc.observer.Observer<AsyncGenerator> observer) {
+    private Subject subject;
 
-        this.asyncGenerator = a;
-        this.observer = observer;
+    public Update(Subject subject) {
+
+        this.subject = subject;
 
     }
 
     public Void call() throws Exception {
-        this.observer.update(this.asyncGenerator);
+        this.subject.notifyObservers();
         return null;
     }
 

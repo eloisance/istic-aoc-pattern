@@ -16,7 +16,7 @@ public class App
         Channel c1 = new Channel();
         Channel c2 = new Channel();
 
-        g.attach((Observer<Generator>) c1);
+        g.attach(c1);
         c1.setObserver(display1);
 
         g.generate();
