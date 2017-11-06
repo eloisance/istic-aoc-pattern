@@ -1,6 +1,7 @@
 package com.istic.aoc.generator;
 
 import com.istic.aoc.Channel;
+import com.istic.aoc.observer.AsyncObserver;
 import com.istic.aoc.observer.Observer;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class GeneratorImpl implements Generator {
 
     private Integer value;
 
-    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private ArrayList<AsyncObserver> observers = new ArrayList<AsyncObserver>();
 
 
     public void generate() {
@@ -27,12 +28,12 @@ public class GeneratorImpl implements Generator {
         this.value = value;
     }
 
-    public void attach(Observer<Generator> observer) {
+    public void attach(AsyncObserver<Generator> observer) {
 
         this.observers.add(observer);
     }
 
-    public void detach(Observer<Generator> observer) {
+    public void detach(AsyncObserver<Generator> observer) {
 
         this.observers.remove(observer);
     }
