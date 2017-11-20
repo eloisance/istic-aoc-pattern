@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.istic.aoc.WindowController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.istic.aoc.WindowController">
+   <children>
+      <Label layoutX="89.0" layoutY="323.0" text="c3" />
+      <Label layoutX="89.0" layoutY="250.0" text="c1" />
+      <Label layoutX="478.0" layoutY="323.0" text="c4" />
+      <Label layoutX="478.0" layoutY="250.0" text="c2" />
+      <Button layoutX="43.0" layoutY="33.0" mnemonicParsing="false" text="start" />
+      <Button layoutX="43.0" layoutY="77.0" mnemonicParsing="false" text="stop" />
+      <RadioButton layoutX="263.0" layoutY="50.0" mnemonicParsing="false" text="Atomic" />
+      <RadioButton layoutX="426.0" layoutY="50.0" mnemonicParsing="false" text="Sequential" />
+   </children>
 </AnchorPane>
