@@ -3,8 +3,13 @@ package com.istic.aoc;
 import com.istic.aoc.generator.GeneratorImpl;
 import com.istic.aoc.generator.Generator;
 import com.istic.aoc.observer.Observer;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class App
+public class App extends Application
 {
     public static void main(String[] args)
     {
@@ -33,5 +38,16 @@ public class App
         c4.setObserver(display4);
 
         g.generate();
+
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("window.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("ActiveObject");
+        stage.setScene(scene);
+        stage.show();
     }
 }
