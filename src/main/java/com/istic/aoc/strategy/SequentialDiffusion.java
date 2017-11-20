@@ -1,15 +1,21 @@
 package com.istic.aoc.strategy;
 
+import com.istic.aoc.generator.GeneratorImpl;
+
 public class SequentialDiffusion implements DiffusionAlgorithm {
 
-    @Override
-    public void configure() {
+    private GeneratorImpl generator;
 
+    public SequentialDiffusion(GeneratorImpl g) {
+        this.generator = g;
     }
 
     @Override
-    public void execute() {
+    public void configure() { }
 
+    @Override
+    public void execute() {
+        this.generator.getObservers().forEach(o -> o.update(this.generator));
     }
 
 }

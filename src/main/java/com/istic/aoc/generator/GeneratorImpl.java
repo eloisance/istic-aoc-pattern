@@ -1,23 +1,24 @@
 package com.istic.aoc.generator;
 
 import com.istic.aoc.observer.AsyncObserver;
+import com.istic.aoc.strategy.AtomicDiffusion;
 import com.istic.aoc.strategy.DiffusionAlgorithm;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GeneratorImpl implements Generator {
 
-    private Integer value;
+    private Integer value = new Integer(0);
 
     private ArrayList<AsyncObserver> observers = new ArrayList<AsyncObserver>();
 
     private DiffusionAlgorithm diffusion;
 
     public void generate() {
-        Random r = new Random();
-        setValue(r.nextInt());
-        notifyObservers();
+        value+= 1;
+        setValue(value);
+        diffusion = new AtomicDiffusion(this);
+        diffusion.execute();
     }
 
     public Integer getValue() {
@@ -29,17 +30,18 @@ public class GeneratorImpl implements Generator {
     }
 
     public void attach(AsyncObserver<Generator> observer) {
-
         this.observers.add(observer);
     }
 
     public void detach(AsyncObserver<Generator> observer) {
-
         this.observers.remove(observer);
     }
 
-    public void notifyObservers() {
+    public ArrayList<AsyncObserver> getObservers() {
+        return observers;
+    }
 
+    public void notifyObservers() {
         this.observers.forEach(o -> o.update(this));
     }
 }
