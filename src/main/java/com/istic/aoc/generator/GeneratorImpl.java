@@ -1,7 +1,7 @@
 package com.istic.aoc.generator;
 
 import com.istic.aoc.observer.AsyncObserver;
-import com.istic.aoc.strategy.AlgoDiffusion;
+import com.istic.aoc.strategy.DiffusionAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,8 +12,7 @@ public class GeneratorImpl implements Generator {
 
     private ArrayList<AsyncObserver> observers = new ArrayList<AsyncObserver>();
 
-    private AlgoDiffusion diffusion;
-
+    private DiffusionAlgorithm diffusion;
 
     public void generate() {
         Random r = new Random();

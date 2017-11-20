@@ -1,6 +1,7 @@
 package com.istic.aoc.strategy;
 
-public class DiffusionAtomique implements AlgoDiffusion {
+public class StampDiffusion implements DiffusionAlgorithm {
+
     @Override
     public void configure() {
 
@@ -10,4 +11,5 @@ public class DiffusionAtomique implements AlgoDiffusion {
     public void execute() {
 
     }
+
 }

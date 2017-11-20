@@ -1,7 +1,6 @@
 package com.istic.aoc.strategy;
 
-public interface AlgoDiffusion {
-
+public interface DiffusionAlgorithm {
     void configure();
     void execute();
 }
