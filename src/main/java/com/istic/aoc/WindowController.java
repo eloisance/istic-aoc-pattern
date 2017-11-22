@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class WindowController implements Initializable {
 
@@ -19,6 +22,7 @@ public class WindowController implements Initializable {
     @FXML private Label c4;
 
     private Generator g;
+    private ScheduledExecutorService scheduledExecutorService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,10 +56,13 @@ public class WindowController implements Initializable {
     public void onStartClickButton(ActionEvent actionEvent) {
         System.out.println("onStartClickButton");
         g.generate();
+        scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
+        scheduledExecutorService.scheduleAtFixedRate(() -> g.generate(), 0, 3, TimeUnit.SECONDS);
     }
 
     public void onStopClickButton(ActionEvent actionEvent) {
         System.out.println("onStopClickButton");
+        scheduledExecutorService.shutdown();
     }
 
     public void onAtomicChoice(ActionEvent actionEvent) {
