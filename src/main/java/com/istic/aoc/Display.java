@@ -1,19 +1,29 @@
 package com.istic.aoc;
 
 import com.istic.aoc.observer.Observer;
+import javafx.application.Platform;
+import javafx.scene.control.Label;
 
 import java.util.concurrent.ExecutionException;
 
 public class Display implements Observer<AsyncGenerator> {
 
-    public void update(AsyncGenerator asyncGenerator) {
-        try {
-            System.out.println("value: " + asyncGenerator.getValue().get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+    private Label label;
+
+    public Display(Label l) {
+         this.label = l;
     }
-    
+
+    public void update(AsyncGenerator asyncGenerator) {
+        Platform.runLater(() -> {
+            try {
+                label.setText(asyncGenerator.getValue().get().toString());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
 }

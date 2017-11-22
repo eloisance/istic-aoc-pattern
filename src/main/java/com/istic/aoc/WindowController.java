@@ -30,10 +30,10 @@ public class WindowController implements Initializable {
 
         g = new GeneratorImpl();
 
-        Observer<AsyncGenerator> display1 = new Display();
-        Observer<AsyncGenerator> display2 = new Display();
-        Observer<AsyncGenerator> display3 = new Display();
-        Observer<AsyncGenerator> display4 = new Display();
+        Observer<AsyncGenerator> display1 = new Display(label1);
+        Observer<AsyncGenerator> display2 = new Display(label2);
+        Observer<AsyncGenerator> display3 = new Display(label3);
+        Observer<AsyncGenerator> display4 = new Display(label4);
 
         Channel c1 = new Channel();
         Channel c2 = new Channel();
