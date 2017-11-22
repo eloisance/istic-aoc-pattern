@@ -1,14 +1,14 @@
 package com.istic.aoc.strategy;
 
-import com.istic.aoc.generator.GeneratorImpl;
+import com.istic.aoc.generator.Generator;
 
 import java.util.concurrent.ExecutionException;
 
 public class AtomicDiffusion implements DiffusionAlgorithm {
 
-    private GeneratorImpl generator;
+    private Generator generator;
 
-    public AtomicDiffusion(GeneratorImpl g) {
+    public AtomicDiffusion(Generator g) {
         this.generator = g;
     }
 

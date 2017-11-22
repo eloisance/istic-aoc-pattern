@@ -1,12 +1,12 @@
 package com.istic.aoc.strategy;
 
-import com.istic.aoc.generator.GeneratorImpl;
+import com.istic.aoc.generator.Generator;
 
 public class SequentialDiffusion implements DiffusionAlgorithm {
 
-    private GeneratorImpl generator;
+    private Generator generator;
 
-    public SequentialDiffusion(GeneratorImpl g) {
+    public SequentialDiffusion(Generator g) {
         this.generator = g;
     }
 

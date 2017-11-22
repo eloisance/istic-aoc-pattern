@@ -18,8 +18,11 @@ public class GeneratorImpl implements Generator {
     public void generate() {
         value+= 1;
         setValue(value);
-        diffusion = new AtomicDiffusion(this);
         diffusion.execute();
+    }
+
+    public void setAlgo(DiffusionAlgorithm diffusionAlgorithm) {
+        diffusion = diffusionAlgorithm;
     }
 
     public Integer getValue() {

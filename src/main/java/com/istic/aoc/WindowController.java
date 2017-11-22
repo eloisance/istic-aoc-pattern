@@ -3,6 +3,8 @@ package com.istic.aoc;
 import com.istic.aoc.generator.Generator;
 import com.istic.aoc.generator.GeneratorImpl;
 import com.istic.aoc.observer.Observer;
+import com.istic.aoc.strategy.AtomicDiffusion;
+import com.istic.aoc.strategy.SequentialDiffusion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,6 +62,10 @@ public class WindowController implements Initializable {
 
         g.attach(c4);
         c4.setObserver(display4);
+
+        // Default algorithm default
+        radioAtomic.setSelected(true);
+        g.setAlgo(new AtomicDiffusion(g));
     }
 
     public void onStartClickButton(ActionEvent actionEvent) {
@@ -80,10 +86,14 @@ public class WindowController implements Initializable {
 
     public void onAtomicChoice(ActionEvent actionEvent) {
         System.out.println("onAtomicChoice");
+        g.setAlgo(new AtomicDiffusion(g));
+        radioSequential.setSelected(false);
     }
 
     public void onSequentialChoice(ActionEvent actionEvent) {
         System.out.println("onSequentialChoice");
+        g.setAlgo(new SequentialDiffusion(g));
+        radioAtomic.setSelected(false);
     }
 
 }
