@@ -11,9 +11,9 @@
       <Label fx:id="label2" layoutX="478.0" layoutY="250.0" text="c2" />
       <Label fx:id="label3" layoutX="89.0" layoutY="323.0" text="c3" />
       <Label fx:id="label4" layoutX="478.0" layoutY="323.0" text="c4" />
-      <Button onAction="#onStartClickButton" layoutX="43.0" layoutY="33.0" mnemonicParsing="false" text="start" />
-      <Button onAction="#onStopClickButton" layoutX="43.0" layoutY="77.0" mnemonicParsing="false" text="stop" />
-      <RadioButton onAction="#onAtomicChoice" layoutX="263.0" layoutY="50.0" mnemonicParsing="false" text="Atomic" />
-      <RadioButton onAction="#onSequentialChoice" layoutX="426.0" layoutY="50.0" mnemonicParsing="false" text="Sequential" />
+      <Button fx:id="btnStart" onAction="#onStartClickButton" layoutX="43.0" layoutY="33.0" mnemonicParsing="false" text="start" />
+      <Button fx:id="btnStop" onAction="#onStopClickButton" layoutX="43.0" layoutY="77.0" mnemonicParsing="false" text="stop" />
+      <RadioButton fx:id="radioAtomic" onAction="#onAtomicChoice" layoutX="263.0" layoutY="50.0" mnemonicParsing="false" text="Atomic" />
+      <RadioButton fx:id="radioSequential" onAction="#onSequentialChoice" layoutX="426.0" layoutY="50.0" mnemonicParsing="false" text="Sequential" />
    </children>
 </AnchorPane>

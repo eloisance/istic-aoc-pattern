@@ -6,7 +6,10 @@ import com.istic.aoc.observer.Observer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +23,12 @@ public class WindowController implements Initializable {
     @FXML private Label label2;
     @FXML private Label label3;
     @FXML private Label label4;
+
+    @FXML private Button btnStart;
+    @FXML private Button btnStop;
+
+    @FXML private RadioButton radioAtomic;
+    @FXML private RadioButton radioSequential;
 
     private Generator g;
     private ScheduledExecutorService scheduledExecutorService;
@@ -58,11 +67,15 @@ public class WindowController implements Initializable {
         g.generate();
         scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
         scheduledExecutorService.scheduleAtFixedRate(() -> g.generate(), 0, 3, TimeUnit.SECONDS);
+        btnStart.setDisable(true);
+        btnStop.setDisable(false);
     }
 
     public void onStopClickButton(ActionEvent actionEvent) {
         System.out.println("onStopClickButton");
         scheduledExecutorService.shutdown();
+        btnStart.setDisable(false);
+        btnStop.setDisable(true);
     }
 
     public void onAtomicChoice(ActionEvent actionEvent) {
