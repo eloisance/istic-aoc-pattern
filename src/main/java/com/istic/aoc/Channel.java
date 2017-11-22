@@ -13,12 +13,13 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
     private Generator generator;
     private Observer<AsyncGenerator> observer;
     private ScheduledExecutorService scheduledExecutorService;
+    int delay;
     //private ArrayList<Observer> observers = new ArrayList<Observer>();
 
-    Channel() {
+    Channel(int delay) {
 
         scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
-
+        this.delay = delay;
     }
 
 
@@ -27,7 +28,7 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
         // scheduler + method invocation
         this.generator = generator;
         Callable<Void> update = new Update(this);
-        return scheduledExecutorService.schedule(update, 1, TimeUnit.SECONDS);
+        return scheduledExecutorService.schedule(update, delay, TimeUnit.MILLISECONDS);
 //        () -> {
 //            observer.update(Channel.this);
 //            return null;}
@@ -37,7 +38,7 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
         // appeler la version synchrone de getValue() dans un thread
         // scheduler + method invocation
         Callable<Integer> getValue = new GetValue(this.generator);
-        return scheduledExecutorService.schedule(getValue, 1, TimeUnit.SECONDS);
+        return scheduledExecutorService.schedule(getValue, delay, TimeUnit.MILLISECONDS);
     }
 
     public void attach(Observer observer) {

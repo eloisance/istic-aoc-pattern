@@ -44,10 +44,10 @@ public class WindowController implements Initializable {
         Observer<AsyncGenerator> display3 = new Display(label3);
         Observer<AsyncGenerator> display4 = new Display(label4);
 
-        Channel c1 = new Channel();
-        Channel c2 = new Channel();
-        Channel c3 = new Channel();
-        Channel c4 = new Channel();
+        Channel c1 = new Channel(0);
+        Channel c2 = new Channel(50);
+        Channel c3 = new Channel(200);
+        Channel c4 = new Channel(400);
 
         g.attach(c1);
         c1.setObserver(display1);
@@ -66,7 +66,7 @@ public class WindowController implements Initializable {
         System.out.println("onStartClickButton");
         g.generate();
         scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
-        scheduledExecutorService.scheduleAtFixedRate(() -> g.generate(), 0, 3, TimeUnit.SECONDS);
+        scheduledExecutorService.scheduleAtFixedRate(() -> g.generate(), 0, 1, TimeUnit.SECONDS);
         btnStart.setDisable(true);
         btnStop.setDisable(false);
     }

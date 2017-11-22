@@ -3,6 +3,7 @@ package com.istic.aoc.generator;
 import com.istic.aoc.observer.AsyncObserver;
 import com.istic.aoc.strategy.AtomicDiffusion;
 import com.istic.aoc.strategy.DiffusionAlgorithm;
+import com.istic.aoc.strategy.SequentialDiffusion;
 
 import java.util.ArrayList;
 
