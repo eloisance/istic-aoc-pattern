@@ -7,10 +7,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.istic.aoc.WindowController">
    <children>
-      <Label fx:id="c1" layoutX="89.0" layoutY="250.0" text="c1" />
-      <Label fx:id="c2" layoutX="478.0" layoutY="250.0" text="c2" />
-      <Label fx:id="c3" layoutX="89.0" layoutY="323.0" text="c3" />
-      <Label fx:id="c4" layoutX="478.0" layoutY="323.0" text="c4" />
+      <Label fx:id="label1" layoutX="89.0" layoutY="250.0" text="c1" />
+      <Label fx:id="label2" layoutX="478.0" layoutY="250.0" text="c2" />
+      <Label fx:id="label3" layoutX="89.0" layoutY="323.0" text="c3" />
+      <Label fx:id="label4" layoutX="478.0" layoutY="323.0" text="c4" />
       <Button onAction="#onStartClickButton" layoutX="43.0" layoutY="33.0" mnemonicParsing="false" text="start" />
       <Button onAction="#onStopClickButton" layoutX="43.0" layoutY="77.0" mnemonicParsing="false" text="stop" />
       <RadioButton onAction="#onAtomicChoice" layoutX="263.0" layoutY="50.0" mnemonicParsing="false" text="Atomic" />

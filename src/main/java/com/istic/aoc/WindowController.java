@@ -16,10 +16,10 @@ import java.util.concurrent.TimeUnit;
 
 public class WindowController implements Initializable {
 
-    @FXML private Label c1;
-    @FXML private Label c2;
-    @FXML private Label c3;
-    @FXML private Label c4;
+    @FXML private Label label1;
+    @FXML private Label label2;
+    @FXML private Label label3;
+    @FXML private Label label4;
 
     private Generator g;
     private ScheduledExecutorService scheduledExecutorService;
