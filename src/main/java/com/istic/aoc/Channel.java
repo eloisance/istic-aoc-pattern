@@ -21,7 +21,7 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
 
     /**
      * Call the update method in ScheduledExecutorService
-     * @param generator who have display to update
+     * @param generator which has the display to update
      * @return Future Void
      */
     public Future<Void> update(Generator generator) {
