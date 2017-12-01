@@ -34,6 +34,12 @@ public class WindowController implements Initializable {
     private Generator g;
     private ScheduledExecutorService scheduledExecutorService;
 
+    /**
+     * Init generator, channels and displays
+     * Attach all channels to the generator
+     * Set all observers
+     * Set default strategy for the diffusion algorithm
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("initialize");
@@ -62,20 +68,31 @@ public class WindowController implements Initializable {
         g.attach(c4);
         c4.setObserver(display4);
 
-        // Default algorithm default
+        // Default algorithm
         radioAtomic.setSelected(true);
         g.setAlgo(new AtomicDiffusion(g));
     }
 
+    /**
+     * onClick start button
+     * Start generate in ScheduledThreadPoolExecutor
+     * Enable stop button & disable start button
+     * @param actionEvent type of event
+     */
     public void onStartClickButton(ActionEvent actionEvent) {
         System.out.println("onStartClickButton");
-        g.generate();
         scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
         scheduledExecutorService.scheduleAtFixedRate(() -> g.generate(), 0, 1, TimeUnit.SECONDS);
         btnStart.setDisable(true);
         btnStop.setDisable(false);
     }
 
+    /**
+     * onClick stop button
+     * Shutdown current ScheduledExecutorService
+     * Enable start button & disable stop button
+     * @param actionEvent type of event
+     */
     public void onStopClickButton(ActionEvent actionEvent) {
         System.out.println("onStopClickButton");
         scheduledExecutorService.shutdown();
@@ -83,12 +100,24 @@ public class WindowController implements Initializable {
         btnStop.setDisable(true);
     }
 
+    /**
+     * onChoice atomic diffusion algorithm
+     * Set diffusion algorithm
+     * Check atomic radio button (auto) and uncheck sequential radio button
+     * @param actionEvent type of event
+     */
     public void onAtomicChoice(ActionEvent actionEvent) {
         System.out.println("onAtomicChoice");
         g.setAlgo(new AtomicDiffusion(g));
         radioSequential.setSelected(false);
     }
 
+    /**
+     * onChoice sequential diffusion algorithm
+     * Set diffusion algorithm
+     * Check sequential radio button (auto) and uncheck atomic radio button
+     * @param actionEvent type of event
+     */
     public void onSequentialChoice(ActionEvent actionEvent) {
         System.out.println("onSequentialChoice");
         g.setAlgo(new SequentialDiffusion(g));
