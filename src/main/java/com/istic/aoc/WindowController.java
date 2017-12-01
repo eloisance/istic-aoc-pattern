@@ -76,7 +76,7 @@ public class WindowController implements Initializable {
     /**
      * onClick start button
      * Start generate in ScheduledThreadPoolExecutor
-     * Enable stop button & disable start button
+     * Enable stop button and disable start button
      * @param actionEvent type of event
      */
     public void onStartClickButton(ActionEvent actionEvent) {
@@ -90,7 +90,7 @@ public class WindowController implements Initializable {
     /**
      * onClick stop button
      * Shutdown current ScheduledExecutorService
-     * Enable start button & disable stop button
+     * Enable start button and disable stop button
      * @param actionEvent type of event
      */
     public void onStopClickButton(ActionEvent actionEvent) {
