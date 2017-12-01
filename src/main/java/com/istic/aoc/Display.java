@@ -16,7 +16,7 @@ public class Display implements Observer<AsyncGenerator> {
 
     /**
      * Waits for the main thread to be available to retrieve the data
-     * @param asyncGenerator to perform the getValue and retrieve the value (a Future)
+     * @param asyncGenerator Asynchronous Generator to perform the getValue and retrieve the value (a Future)
      */
     public void update(AsyncGenerator asyncGenerator) {
         Platform.runLater(() -> {
