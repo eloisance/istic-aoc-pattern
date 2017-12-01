@@ -1,5 +1,12 @@
 # istic-aoc-pattern
 
+## Usage
+
+// use of the jar
+
+## Environment
+- JavaFX
+
 ### Tags
 
 #### 0.0.1
