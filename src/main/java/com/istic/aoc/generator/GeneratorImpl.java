@@ -1,18 +1,14 @@
 package com.istic.aoc.generator;
 
 import com.istic.aoc.observer.AsyncObserver;
-import com.istic.aoc.strategy.AtomicDiffusion;
 import com.istic.aoc.strategy.DiffusionAlgorithm;
-import com.istic.aoc.strategy.SequentialDiffusion;
 
 import java.util.ArrayList;
 
 public class GeneratorImpl implements Generator {
 
-    private Integer value = new Integer(0);
-
+    private Integer value = 0;
     private ArrayList<AsyncObserver> observers = new ArrayList<AsyncObserver>();
-
     private DiffusionAlgorithm diffusion;
 
     public void generate() {

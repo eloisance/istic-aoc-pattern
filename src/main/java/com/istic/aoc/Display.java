@@ -18,9 +18,7 @@ public class Display implements Observer<AsyncGenerator> {
         Platform.runLater(() -> {
             try {
                 label.setText(asyncGenerator.getValue().get().toString());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         });

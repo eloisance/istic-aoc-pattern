@@ -5,7 +5,6 @@ import com.istic.aoc.observer.AsyncObserver;
 import com.istic.aoc.observer.Observer;
 import com.istic.aoc.observer.Subject;
 
-import java.util.ArrayList;
 import java.util.concurrent.*;
 
 public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator>, AsyncGenerator {
@@ -13,30 +12,29 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
     private Generator generator;
     private Observer<AsyncGenerator> observer;
     private ScheduledExecutorService scheduledExecutorService;
-    int delay;
-    //private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private Integer delay;
 
     Channel(int delay) {
-
-        scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
         this.delay = delay;
+        scheduledExecutorService = new ScheduledThreadPoolExecutor(Integer.MAX_VALUE);
     }
 
-
+    /**
+     * Call the update method in ScheduledExecutorService
+     * @param generator who have display to update
+     * @return Future Void
+     */
     public Future<Void> update(Generator generator) {
-        // appeler la version synchrone de update() dans un thread
-        // scheduler + method invocation
         this.generator = generator;
         Callable<Void> update = new Update(this);
         return scheduledExecutorService.schedule(update, delay, TimeUnit.MILLISECONDS);
-//        () -> {
-//            observer.update(Channel.this);
-//            return null;}
     }
 
+    /**
+     * Call the getValue in ScheduledExecutorService
+     * @return Future Integer
+     */
     public Future<Integer> getValue() {
-        // appeler la version synchrone de getValue() dans un thread
-        // scheduler + method invocation
         Callable<Integer> getValue = new GetValue(this.generator);
         return scheduledExecutorService.schedule(getValue, delay, TimeUnit.MILLISECONDS);
     }
@@ -53,14 +51,6 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
             observer.update(this);
     }
 
-    public Generator getGenerator() {
-        return generator;
-    }
-
-    public void setGenerator(Generator generator) {
-        this.generator = generator;
-    }
-
     public Observer<AsyncGenerator> getObserver() {
         return observer;
     }
@@ -69,19 +59,4 @@ public class Channel implements Subject<AsyncGenerator>, AsyncObserver<Generator
         this.observer = observer;
     }
 
-    public ScheduledExecutorService getScheduledExecutorService() {
-        return scheduledExecutorService;
-    }
-
-    public void setScheduledExecutorService(ScheduledExecutorService scheduledExecutorService) {
-        this.scheduledExecutorService = scheduledExecutorService;
-    }
-
-//    public ArrayList<Observer> getObservers() {
-//        return observers;
-//    }
-//
-//    public void setObservers(ArrayList<Observer> observers) {
-//        this.observers = observers;
-//    }
 }
