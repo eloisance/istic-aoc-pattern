@@ -3,14 +3,14 @@ Projet de TP AOC sur le pattern Active Object.
 
 ## Usage
 
-java -jar pattern.active.object-1.0-SNAPSHOT.jar
+java -jar pattern.active.object-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 
 ## Environment
 - JavaFX
 - FXML
 
-## Tags
+## Versions
 
 #### Final
 Version avec pattern Active Object et appel au JDK d'Oracle.
