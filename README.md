@@ -2,12 +2,21 @@
 Projet de TP AOC sur le pattern Active Object.
 
 ## Usage
-// use of the jar
+
+java -jar pattern.active.object-1.0-SNAPSHOT.jar
+
 
 ## Environment
 - JavaFX
+- FXML
 
 ## Tags
+
+#### Final
+Version avec pattern Active Object et appel au JDK d'Oracle.
+
+#### 0.0.2
+Version avec les différentes stratégies de diffusion.
 
 #### 0.0.1
 Version simple du pattern Observer synchrone.
